@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import withAuth from '../components/withAuth'
 
-import auth from '../services/auth-service';
 
 class Signup extends Component {
 
   state = {
     username: '',
     password: '',
+    name:'',
+    surname:'',
+    email:'',
+    birthday:''
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
+    const name = this.state.name;
+    const surname = this.state.surname;
+    const email = this.state.email;
+    const birthday = this.state.birthday;
 
-    auth.signup({ username, password })
+    this.props.signup({ username, password, name, surname, email, birthday })
       .then( (user) => {
         console.log(user)
         this.setState({
             username: '',
             password: '',
+            name:'',
+            surname:'',
+            email:'',
+            birthday:''
         });
       })
       .catch( error => console.log(error) )
@@ -32,10 +44,18 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, name, surname, email, birthday } = this.state;
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
+          <label htmlFor='name'>Name:</label>
+          <input id='name' type='text' name='name' value={name} onChange={this.handleChange} />
+          <label htmlFor='surname'>Surname:</label>
+          <input id='surname' type='text' name='surname' value={surname} onChange={this.handleChange} />
+          <label htmlFor='email'>E-mail:</label>
+          <input id='email' type='email' name='email' value={email} onChange={this.handleChange} />
+          <label htmlFor='birthday'>Birthday:</label>
+          <input id='birthday' type='date' name='birthday' value={birthday} onChange={this.handleChange} />
           <label htmlFor='username'>Username:</label>
           <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
           <label htmlFor='password'>Password:</label>
@@ -52,4 +72,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withAuth(Signup);

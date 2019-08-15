@@ -3,13 +3,13 @@ import axios from 'axios';
 class AuthService {
   constructor() {
     this.auth = axios.create({
-      baseURL: 'http://localhost:4000'
+      baseURL: 'http://localhost:4000',
+      withCredentials: true,
     })
   }
 
   signup(user) {
-    const { username, password } = user;
-    return this.auth.post('/auth/signup', {username, password})
+    return this.auth.post('/auth/signup', user)
       .then(({ data }) => data);
   }
 
@@ -30,6 +30,6 @@ class AuthService {
   }
 }
 
-const auth = new AuthService();
+const authService = new AuthService();
 
-export default auth
+export default authService
