@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth'
+import collectionService from '../services/collection-service'
 
 
 class Collections extends Component {
@@ -18,11 +19,29 @@ class Collections extends Component {
     event.preventDefault();
     const title = this.state.title;
     const newCollection = {title};
+    //make new service
+
+    //call to end point in service(in service file)
+
+    //import at top of file
+
+    // call the method here and then set the state from the data returned
+
+    //high five jack
     this.props.handlePropsNewCollection(newCollection)
     this.setState({
         title:'',
     })
   }
+
+  addNewCollection = (title) => {
+    return collectionService.signup(title)
+    .then((title) => {
+        this.setState({
+            [title]: title
+        })
+    })
+}
 
   generateList = () => {
     const listItems = [];
