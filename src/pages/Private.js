@@ -6,7 +6,7 @@ class Private extends Component {
   render() {
     return (
       <div>
-        <h1>Private Page</h1>
+        <h2>Private Page</h2>
         <Link to='/private/collections/:id' activeClassName='active-link'>Collections</Link>
       </div>
     )

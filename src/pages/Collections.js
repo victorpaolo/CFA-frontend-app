@@ -1,79 +1,75 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import withAuth from '../components/withAuth'
 import collectionService from '../services/collection-service'
+import withAuth from '../components/withAuth'
+import CreateCollection from './CreateCollection';
+
 
 
 class Collections extends Component {
+      state = {
+        title: "",
+        collections: [],
+    }
 
-  state = {
-    title: '',
-  };
-
-  handleChange = (event) => {  
-    const {name, value} = event.target;
-    this.setState({[name]: value});
-  }
-
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    const title = this.state.title;
-    const newCollection = {title};
-    //make new service
-
-    //call to end point in service(in service file)
-
-    //import at top of file
-
-    // call the method here and then set the state from the data returned
-
-    //high five jack
-    this.props.handlePropsNewCollection(newCollection)
-    this.setState({
-        title:'',
-    })
-  }
-
-  addNewCollection = (title) => {
-    return collectionService.signup(title)
-    .then((title) => {
+    //Vemos la lista de colleciones on top
+    componentDidMount () {
+      collectionService.getCollections()
+      .then(response => {
+        console.log(response);
         this.setState({
-            [title]: title
+          collections: response.listOfCollections,
         })
-    })
-}
+      }) 
+    }
 
-  generateList = () => {
-    const listItems = [];
-    this.state.data.forEach((title, index) => {
-      listItems.push(<li key={index}>
-        <p>{title.name}</p>
-      </li>)
-    })
-    return listItems;
-  }
 
-  render() {
-    const { title } = this.state;
-    return (
+    //eliminamos una colleccion
+
+    handleDeleteClick = (id) => {
+      collectionService.deleteCollection(id)
+      .then(() => {
+        const filteredCollections = this.state.collections.filter((singleCollection) => {
+          return singleCollection._id !== id
+        })
+        this.setState({
+          collections: filteredCollections
+        })
+      })
+    }
+
+    changeCollections = (collection) => {
+      const newArray = [...this.state.collections]
+      newArray.push(collection)
+      this.setState({
+        collections: newArray
+      })
+    }
+    
+    render() {
+      const {collections} = this.state;
+      console.log(collections)
+      return (
       <>
-        <h1>Collections Page</h1>
-        <Link to='/private/collections/onecollection/:id' activeClassName='active-link'>Collection unique</Link>
-
-        <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='title'>Title:</label>
-          <input 
-          id='title' 
-          type='text' 
-          name='title' 
-          value={title} 
-          onChange={this.handleChange} />
-          <button>Add new collection</button>
-        </form>
-
-      </>
-    )
-  }
-}
-
-export default withAuth(Collections);
+        <h2>My collections</h2>
+        <CreateCollection pushNewCollection={this.changeCollections}/>
+        <section>
+          {collections.length > 0 ? collections.map((collection) => {
+            return (
+              <article key={collection._id} className="collections">
+                <button onClick={() => {
+                  this.handleDeleteClick(collection._id)
+                }}>X</button>
+                <h4>{collection.title}</h4>
+              <button><Link to={`/private/collection/edit/${collection._id}`}>Go</Link></button>
+              </article>
+            )
+          }):<p>Loading...</p>}
+        </section>
+        </>
+        )
+      }
+    }
+    
+    export default withAuth(Collections);
+    

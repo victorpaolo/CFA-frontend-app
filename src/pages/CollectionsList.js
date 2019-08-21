@@ -7,7 +7,7 @@ export default function CollectionsList(props) {
             {props.collections.length > 0 ? props.collections.map((collection, index) => {
                 return (
                 <article key={index}>
-                    <h3>{collection.title}</h3>
+                    <h2>{collection.title}</h2>
                 </article>
                 )
             }) : <p>No collection added</p>}

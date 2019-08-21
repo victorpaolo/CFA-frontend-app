@@ -35,3 +35,135 @@
 .active-link {
   font-size: 20px;
 }
+
+/* --- General --- */
+.container h1 {
+  font-size: 2.6rem;
+}
+
+.container h2 {
+  font-size: 2rem;
+}
+
+.container li {
+list-style-type: none;
+}
+
+.container button {
+  background-color: #604DE8;
+  border: 0.1rem solid #604DE8;
+}
+
+.nav-links {
+  color: #604DE8;
+}
+
+
+
+
+/* --- Navbar --- */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 11px;
+  margin-top: 11px;
+
+}
+
+
+/* --- Home Page --- */
+
+
+/* --- Profile --- */
+
+
+/* --- Category --- */
+
+
+/* --- Collections --- */
+
+.collections {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* --- Collection --- */
+
+
+/* --- Formula ---  */
+
+
+/*
+.navbar.open{
+  left:0;
+}
+.navbar ul{
+  list-style:none;
+  margin-top:40%;
+  font-size:1.5em;
+}
+
+.navbar ul li{
+  border-bottom:1px solid pink;
+  margin-bottom:10px;
+  padding:5px;
+  text-align:left;
+}
+
+.navbar ul li:hover{
+  text-shadow:1px 1px 3px pink;
+  cursor:pointer;
+}
+
+.container-navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#hamburger-button {
+  position: relative;
+  z-index: 9999; 
+  display: inline-block;
+  vertical-align: top;
+  height:15px;
+  width:20px;
+  margin-left:5%;
+  margin-top:5%;
+}
+
+#hamburger-button:hover {
+  cursor: pointer;
+
+}
+
+#hamburger-button > span {
+  display: block;
+  height: 3px;
+  margin-bottom: 3px;
+  width: 20px;
+  background-color: pink;
+ -webkit-transition-timing-function: linear; 
+transition-timing-function: linear;
+transition-duration:1s;
+}
+   
+
+#hamburger-button.open > span:first-child {
+-webkit-transform: translateY(6px) rotate(45deg); 
+transform:translateY(6px) rotate(45deg);
+}
+
+
+#hamburger-button.open > span:nth-child(2) {
+   -webkit-transform: rotateY(90deg); 
+    transform: rotateY(90deg);
+}
+
+#hamburger-button.open > span:last-child {
+ -webkit-transform: translateY(-6px) rotate(-45deg); 
+    transform: translateY(-6px) rotate(-45deg);
+}
+*/

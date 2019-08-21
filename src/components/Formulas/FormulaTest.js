@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Formula extends Component {
+export default class FormulaTest extends Component {
     state = {
         celcius: "",
         americanTemperature: "",
@@ -28,7 +28,7 @@ export default class Formula extends Component {
         console.log(this.state);
         return (
             <div>
-                <h1>Formula Page</h1>
+                <h2>Formula Test</h2>
                 <p><input className='valusC' name="celcius" type="number" id="c" value={this.state.celcius} onChange={(e)=>{this.handleKeyPress(e)}}/> degrees Celcius</p>
                 <p><input className='valusC' name="americanTemperature" type="number" id="f" value={this.state.americanTemperature} onChange={(e)=>{this.handleKeyPress(e)}}/> degrees Fahrenheit</p>
             </div>
