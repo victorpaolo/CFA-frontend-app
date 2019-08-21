@@ -31,7 +31,7 @@ export default class Kurtosis extends Component {
         return (
             <div>
                 <h2>Excess Curtosis Calculation</h2>
-                <AddToColection />
+                <AddToColection formulaName="kurtosis"/>
                 <p><input className='valusC' name="excessKurtosis" type="number" id="c" value={this.state.excessKurtosis} onChange={(e)=>{this.handleKeyPress(e)}}/>Excess Kurtosis</p>
                 <p><input className='valusC' name="sampleKurtosis" type="number" id="f" value={this.state.sampleKurtosis} onChange={(e)=>{this.handleKeyPress(e)}}/>Sample Kurtosis</p>
             </div>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+
 import collectionService from './../services/collection-service'
 
 export default class EditCollection extends Component {
@@ -12,6 +14,7 @@ export default class EditCollection extends Component {
 
         collectionService.getCollectionById(id)
             .then((collection) => {
+                console.log(collection)
                 const { title, formulas } = collection;
                 this.setState({ title, formulas })
             })
@@ -50,8 +53,9 @@ export default class EditCollection extends Component {
                             Update
                         </button>
                 </form>
-                <p>{ formulas }</p>
-                {/* <Link to={`/formula/${forumlaName}`}/> */}
+                { formulas.map((formulaName) => (
+                        <Link to={`/formula/${formulaName}`}><button>{formulaName}</button></Link>
+                    )) }
             </div>
         )
     }

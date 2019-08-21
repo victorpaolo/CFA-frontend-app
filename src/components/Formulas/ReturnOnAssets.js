@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AddToColection from '../../pages/AddToColection';
+import MathJax from 'react-mathjax2'
 
 
 export default class ReturnOnAssets extends Component {
@@ -83,14 +84,20 @@ export default class ReturnOnAssets extends Component {
             )
         }
     }
-
+    
     render() {
+        const ascii = 'ROA = (Net Income)/(Average-Total-Assets)'
         console.log(this.state);
         
         return (
             <div>
                 <h2>ROA Calculation</h2>
-                <AddToColection />
+                <MathJax.Context input='ascii'>
+                    <div>
+                        <MathJax.Node>{ascii}</MathJax.Node>
+                    </div>
+                </MathJax.Context>
+                <AddToColection formulaName="roa"/>
                 <label>
                      I want to calculate:
                      <select onChange={this.handleSelect} value={this.state.mode}>

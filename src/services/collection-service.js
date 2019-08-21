@@ -3,7 +3,7 @@ import axios from 'axios';
 class CollectionService {
   constructor() {
     this.collection = axios.create({
-      baseURL: 'http://localhost:4000',
+      baseURL: process.env.REACT_APP_BACKEND_DOMAIN,
       withCredentials: true,
     })
   }
@@ -25,7 +25,7 @@ createCollection(collection) {
 }
 
 addFormulaToCollection(formulaName, collectionId) {
-  return this.collection.post(`/private/${collectionId}/add_formula`, {formulaName})
+  return this.collection.put(`/private/${collectionId}/add_formula`, {formulaName})
   .then(({ data }) => data );
 }
 

@@ -8,7 +8,7 @@ class Formula extends Component {
     state = {
         title: "",
         collections: [],
-        selectedCollection: "",
+        selectedCollectionId: undefined,
         formulaName:"",
     }
 
@@ -17,8 +17,10 @@ class Formula extends Component {
         collectionService.getCollections()
         .then(response => {
           console.log(response);
+          const { formulaName } = this.props;
           this.setState({
             collections: response.listOfCollections,
+            formulaName
           })
         }) 
       }
@@ -27,18 +29,15 @@ class Formula extends Component {
       //añadimos la formula a la collecion
       handleFormSubmit = (event) => {
         event.preventDefault();
-        const { id } = this.props.match.params;
-        console.log(this.props.match.params)
-        const name = this.state.formulaName
+        const { formulaName, selectedCollectionId} = this.state;
 
-        collectionService.addFormulaToCollection(name, id)
-        .then(() => {
-            this.setState({
-                formulaName: [name],
-                })
+        collectionService.addFormulaToCollection(formulaName, selectedCollectionId)
+            .then(() => {
+                this.setState({ selectedCollectionId: undefined })
             })
             .catch( error => console.log(error))
         }
+
 
         handleSelectĆhange = (event) => {
             const { value, name } = event.target;
@@ -51,7 +50,7 @@ class Formula extends Component {
     
 
     render() {
-        const {collections} = this.state;
+        const {collections, selectedCollectionId} = this.state;
         return (
             <>
                 <section>
@@ -59,17 +58,20 @@ class Formula extends Component {
                     ? <button><Link to='/collections' >Create your collection</Link></button>
                     : 
                     <>
-                    <select name="selectedCollection" onChange={this.handleSelectĆhange}>
+                    <select name="selectedCollectionId" onChange={this.handleSelectĆhange}>
                         <option value="" disabled selected>Select your option</option>
                         {collections.map((collection) => {
                         return(
                             <>
-                                <button onClick={() => {this.handleFormSubmit(collection._id)}}>+</button>
                                 <option value={collection._id}>{collection.title}</option>
                             </>
                         )
                         })}   
                     </select>
+                    {selectedCollectionId
+                        ? <button onClick={this.handleFormSubmit}>Add To Collection</button>
+                        : null
+                    }
                     <button><Link to='/collections' >Create your collection</Link></button>
                     </>
                 }

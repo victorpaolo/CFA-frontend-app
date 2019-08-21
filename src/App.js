@@ -57,16 +57,16 @@ class App extends Component {
               <Route path="/category" exact component={Category}/>
               
               <Route path='/quants' exact component={Quants}/>
-              <Route path='/formula/kurtosis' component={Kurtosis}/>
               <Route path='/economics' exact component={Economics}/>
               <Route path='/fra' exact component={Financial}/>
-              <Route path='/formula/roa' exact component={ReturnOnAssets}/>
               <Route path='/corporate' exact component={Corporate}/>
               <Route path='/portfolio' exact component={Portfolio}/>
               <Route path='/equity' exact component={Equity}/>
               <Route path='/fixed' exact component={Fixed}/>
               <Route path='/alternatives' exact component={Alternatives}/>
 
+              <Route path='/formula/kurtosis' exact component={Kurtosis}/>
+              <Route path='/formula/roa' exact component={ReturnOnAssets}/>
               
               <Route component={NotFound}/>
             </Switch>
