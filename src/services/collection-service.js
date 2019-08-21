@@ -24,8 +24,8 @@ createCollection(collection) {
   .then(({ data }) => data );
 }
 
-addFormulaToCollection(formulaUrl, collectionId) {
-  return this.collection.post(`/private/${collectionId}/add_formula`, {formulaUrl})
+addFormulaToCollection(formulaName, collectionId) {
+  return this.collection.post(`/private/${collectionId}/add_formula`, {formulaName})
   .then(({ data }) => data );
 }
 

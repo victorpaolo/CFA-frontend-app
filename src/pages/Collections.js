@@ -64,7 +64,7 @@ class Collections extends Component {
               <button><Link to={`/private/collection/edit/${collection._id}`}>Go</Link></button>
               </article>
             )
-          }):<p>Loading...</p>}
+          }):<p>No collections created yet</p>}
         </section>
         </>
         )

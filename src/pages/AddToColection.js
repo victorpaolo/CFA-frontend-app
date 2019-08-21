@@ -6,8 +6,10 @@ import collectionService from './../services/collection-service'
 
 class Formula extends Component {
     state = {
-        title: "Pepe",
+        title: "",
         collections: [],
+        selectedCollection: "",
+        formulaName:"",
     }
 
     //vemos la lista de collecciones
@@ -25,15 +27,22 @@ class Formula extends Component {
       //añadimos la formula a la collecion
       handleFormSubmit = (event) => {
         event.preventDefault();
-        const url = this.props.match.path;
-        console.log(this.props.match.path);
-        collectionService.addFormulaToCollection(url)
+        const { id } = this.props.match.params;
+        console.log(this.props.match.params)
+        const name = this.state.formulaName
+
+        collectionService.addFormulaToCollection(name, id)
         .then(() => {
             this.setState({
-                collections: url,
+                formulaName: [name],
                 })
             })
             .catch( error => console.log(error))
+        }
+
+        handleSelectĆhange = (event) => {
+            const { value, name } = event.target;
+            this.setState({ [name]: value})
         }
 
         // get all collections of the user from api --> DONE
@@ -43,23 +52,27 @@ class Formula extends Component {
 
     render() {
         const {collections} = this.state;
-        console.log(collections)
         return (
             <>
                 <section>
-                {collections.length > 0 ? collections.map((collection) => {
-                    return(
-                        <>
-                        <select>
-                            <option>{collection.title}</option>
-                        </select>
-                        <button onClick={() => {
-                        this.handleFormSubmit(collection._id)
-                        }}>+</button>
-                        </>
-                    )
-                    
-                    }):<button><Link to='/collections' >Create your collection</Link></button>}
+                {!collections.length 
+                    ? <button><Link to='/collections' >Create your collection</Link></button>
+                    : 
+                    <>
+                    <select name="selectedCollection" onChange={this.handleSelectĆhange}>
+                        <option value="" disabled selected>Select your option</option>
+                        {collections.map((collection) => {
+                        return(
+                            <>
+                                <button onClick={() => {this.handleFormSubmit(collection._id)}}>+</button>
+                                <option value={collection._id}>{collection.title}</option>
+                            </>
+                        )
+                        })}   
+                    </select>
+                    <button><Link to='/collections' >Create your collection</Link></button>
+                    </>
+                }
                 </section>
             </>
         )
@@ -69,29 +82,6 @@ class Formula extends Component {
 
 export default withAuth(withRouter(Formula))
 
-// render() {
-//     const {collections} = this.state;
-//     return (
-//         <>
-//             <section>
-//             {collections.length > 0 ? collections.map((collection) => {
-//                 return (
-//                 <>
-//                     <select key={collection._id} name="title" onChange={this.handleChange} defaultValue={this.state.category}>
-//                         <option>{collection.title}</option>
-//                         <button onClick={() => {
-//                         this.handleFormSubmit(collection._id)
-//                         }}>+</button>
-//                     </select>
-//                     <section>
-//                     <Link to='/collections' >Create your collection</Link>
-//                     </section>
-//                 </>
-//                 )
-//             }):<Link to='/collections' >Create your collection</Link>}
-//             </section>
-//         </>
-
 
 // collections.map((collection) => {
 //     return (
@@ -99,9 +89,6 @@ export default withAuth(withRouter(Formula))
 //             <select key={collection._id} name={collection.title} onChange={this.handleChange} defaultValue={this.state.category}>
 //                 <option>{collection.title}</option>
 //             </select>
-//             <button onClick={() => {
-//             this.handleFormSubmit(collection._id)
-//             }}>+</button>
 //         </>
 //     )
 // })

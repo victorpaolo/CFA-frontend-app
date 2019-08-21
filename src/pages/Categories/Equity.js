@@ -5,7 +5,7 @@ export default function Equity() {
     return (
         <div>
             <h2>Equity</h2>
-            <Link to='/category/formula' activeClassName='active-link'>Formula</Link>
+            <Link to='/formula/kurtosis' >Kurtosis</Link>
         </div>
     )
 }

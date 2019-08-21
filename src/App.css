@@ -73,7 +73,24 @@ list-style-type: none;
 
 
 /* --- Home Page --- */
+.categories {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
+.category {
+  border: solid black 0.1px;
+  width: 124px;
+  height: 100px;
+  padding-top: 35px;
+  text-align: center;
+
+}
 
 /* --- Profile --- */
 

@@ -51,7 +51,7 @@ export default class EditCollection extends Component {
                         </button>
                 </form>
                 <p>{ formulas }</p>
-                {/* <button><Link to={`/private/collection/edit/${collection._id}`}>Go</Link></button> */}
+                {/* <Link to={`/formula/${forumlaName}`}/> */}
             </div>
         )
     }

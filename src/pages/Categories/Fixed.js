@@ -5,8 +5,7 @@ export default function Fixed() {
     return (
         <div>
             <h2>Fixed</h2>
-            <Link to='/category/formula' activeClassName='active-link'>Formula</Link>
-
+            <Link to='/formula/kurtosis' >Kurtosis</Link>
         </div>
     )
 }

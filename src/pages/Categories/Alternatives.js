@@ -5,7 +5,7 @@ export default function Alternatives() {
     return (
         <div>
             <h2>Alternatives</h2>
-            <Link to='/category/formula' activeClassName='active-link'>Formula</Link>
+            <Link to='/formula/kurtosis' >Kurtosis</Link>
 
         </div>
     )

@@ -3,78 +3,110 @@ import AddToColection from '../../pages/AddToColection';
 
 
 export default class ReturnOnAssets extends Component {
-    
-
     state = {
-        netIncome:"4",
-        averageTotalAssets: "5",
-        returnOnAssets:"",
+        netIncome:0,
+        averageTotalAssets:0,
+        returnOnAssets:0,
+        mode:"ROA",
         }
     
     handleKeyPress = (event) => {
         const {name, value} = event.target
+        console.log(name)
         this.setState({[name] : Number(value)},()=>this.convert(name))
     }
 
-    calculationRoe2 = (props, name) => {
-        const selected = "ROA"
-        const {returnOnAssets, netIncome} = this.state
-        this.setState({averageTotalAssets: this.calculationTotalAssets(netIncome, returnOnAssets)}
-        )
-    }
     convert = (name) => {
         const {returnOnAssets, netIncome, averageTotalAssets} = this.state;
-        console.log(name, this.state[name]);
-        if (name === "netIncome" && "returnOnAssets") {
+        console.log(returnOnAssets, netIncome, averageTotalAssets);
+        
+        if (name === "averageTotalAssets" || "netIncome" ) {
+          
+            this.setState({
+                returnOnAssets: this.calculationRoa(netIncome, averageTotalAssets),
+                // averageTotalAssets: this.calculationTotalAssets(returnOnAssets, averageTotalAssets)
+            }
+        )   
+        } else if (name === "returnOnAssets" || "averageTotalAssets" ){
+            this.setState({
+                netIncome: this.calculationNetIncome(returnOnAssets, averageTotalAssets),
+                // returnOnAssets: this.calculationRoa(netIncome, averageTotalAssets)
+            }, ()=>{console.log("NET INCOME CALCULATION", this.state)}
+        )   
+        } else if (name ===  "returnOnAssets" || "netIreturnOnAssetsncome") {
+
             this.setState({
                 // netIncome: this.calculationNetIncome(returnOnAssets, averageTotalAssets),
                 averageTotalAssets: this.calculationTotalAssets(netIncome, returnOnAssets)
             }
-        ); return "Insert Net Income and ROA";
-        } else if (name === "netIncome") {
-            this.setState({
-                // returnOnAssets: this.calculationRoe(netIncome, averageTotalAssets),
-                // averageTotalAssets: this.calculationTotalAssets(returnOnAssets, averageTotalAssets)
-            }
-        )   
-        } else {
-            this.setState({
-                // netIncome: this.calculationNetIncome(returnOnAssets, averageTotalAssets),
-                // returnOnAssets: this.calculationRoe(netIncome, averageTotalAssets)
-            }
-        )   
-        }
+        )
+        } 
     }
-    calculationRoe = (value, value2) => {
+    calculationRoa = (value, value2) => {
+        
         return value / value2;
     }
     calculationNetIncome = (value, value2) => {
+        
         return value * value2; 
     }
     calculationTotalAssets = (value, value2) => {
         return value / value2; 
     }
 
+    handleSelect = (e) => {
+        this.setState({mode: e.target.value,})
+    }
+    renderCalculation = () => {
+        if(this.state.mode === 'ROA') {
+            return (<>
+                <p>Net Income<input className='valusC' name="netIncome" type="number" id="f" value={this.state.netIncome} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+                <p>Average Total Assets<input className='valusC' name="averageTotalAssets" type="number" id="f" value={this.state.averageTotalAssets} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+                <p>ROA<input className='valusC' name="returnOnAssets" type="number" id="c" value={this.state.returnOnAssets}/></p>
+                </>
+            );
+        } else if (this.state.mode === 'Net Income') {
+            console.log("net income ready")
+            return(<>
+                <p>ROA<input className='valusC' name="returnOnAssets" type="number" id="c" value={this.state.returnOnAssets} onChange={(e)=>{console.logthis.handleKeyPress(e)}}/></p>
+                <p>Average Total Assets<input className='valusC' name="averageTotalAssets" type="number" id="f" value={this.state.averageTotalAssets} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+                <p>Net Income<input className='valusC' name="netIncome" type="number" id="f" value={this.state.netIncome} /></p>
+                </>
+            )
+        } else if (this.state.mode === 'Average Total Assets') {
+            return(
+                <>
+                <p>ROA<input className='valusC' name="returnOnAssets" type="number" id="c" value={this.state.returnOnAssets} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+                <p>Net Income<input className='valusC' name="netIncome" type="number" id="f" value={this.state.netIncome} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+                <p>Average Total Assets<input className='valusC' name="averageTotalAssets" type="number" id="f" value={this.state.averageTotalAssets} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+                </>
+            )
+        }
+    }
+
     render() {
         console.log(this.state);
+        
         return (
             <div>
                 <h2>ROA Calculation</h2>
                 <AddToColection />
-                {}
                 <label>
-                    I want to calculate:
-                    <select >
-                        <option >ROA</option>
-                        <option >Net Income</option>
-                        <option >Average Total Assets</option>
-                    </select>
-                </label>
-                <p><input className='valusC' name="returnOnAssets" type="number" id="c" value={this.state.returnOnAssets} onChange={(e)=>{this.handleKeyPress(e)}}/>ROA</p>
-                <p><input className='valusC' name="netIncome" type="number" id="f" value={this.state.netIncome} onChange={(e)=>{this.handleKeyPress(e)}}/>Net Income</p>
-                <p><input className='valusC' name="averageTotalAssets" type="number" id="f" value={this.state.averageTotalAssets} onChange={(e)=>{this.handleKeyPress(e)}}/>Average Total Assets</p>
-                <button>Calculate</button>
+                     I want to calculate:
+                     <select onChange={this.handleSelect} value={this.state.mode}>
+                         <option value="ROA">ROA</option>
+                         <option value="Net Income">Net Income</option>
+                         <option value="Average Total Assets">Average Total Assets</option>
+                     </select>
+                 </label>
+                <div>{this.renderCalculation()}</div>
             </div>
         )
     }
 }
+
+// {}
+// <p>ROA<input className='valusC' name="returnOnAssets" type="number" id="c" value={this.state.returnOnAssets} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+// <p>Net Income<input className='valusC' name="netIncome" type="number" id="f" value={this.state.netIncome} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+// <p>Average Total Assets<input className='valusC' name="averageTotalAssets" type="number" id="f" value={this.state.averageTotalAssets} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
+// <button>Calculate</button>

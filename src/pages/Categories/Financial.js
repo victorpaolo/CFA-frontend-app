@@ -5,7 +5,10 @@ export default function Financial() {
     return (
         <div>
             <h2>FRA</h2>
-            <Link to='/fra/roe' >ROA</Link>
+            <ul>
+                <li><Link to='/formula/kurtosis' >Kurtosis</Link></li>
+                <li><Link to='/formula/roa' >ROA</Link></li>
+            </ul>
         </div>
     )
 }
