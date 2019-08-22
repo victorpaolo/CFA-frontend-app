@@ -50,7 +50,7 @@ class Formula extends Component {
             <>
                 <section className="form-addcollection">
                 {!collections.length 
-                    ? <button><Link className="button-link" to='/collections' >Create collection</Link></button>
+                    ? <button><Link className="button-link" to='/collections' >My Collections</Link></button>
                     : 
                     <>
                     <select name="selectedCollectionId" onChange={this.handleSelectĆhange}>
@@ -67,7 +67,7 @@ class Formula extends Component {
                         ? <button onClick={this.handleFormSubmit}>Add To Collection</button>
                         : null
                     }
-                    <button><Link className="button-link" to='/collections' >Create collection</Link></button>
+                    <button><Link className="button-link" to='/collections' >My Collections</Link></button>
                     </>
                 }
                 </section>
