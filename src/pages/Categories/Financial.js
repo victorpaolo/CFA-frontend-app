@@ -6,7 +6,6 @@ export default function Financial() {
         <div>
             <h2>FRA</h2>
             <ul>
-                <li><Link to='/formula/kurtosis' >Kurtosis</Link></li>
                 <li><Link to='/formula/roa' >ROA</Link></li>
             </ul>
         </div>

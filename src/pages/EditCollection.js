@@ -14,7 +14,6 @@ export default class EditCollection extends Component {
 
         collectionService.getCollectionById(id)
             .then((collection) => {
-                console.log(collection)
                 const { title, formulas } = collection;
                 this.setState({ title, formulas })
             })
@@ -31,7 +30,7 @@ export default class EditCollection extends Component {
         const collection = this.state;
         
         collectionService.editCollection(collection, id)
-            .then((data) => {
+            .then(() => {
                 this.props.history.push("/collections")
             })
     }
@@ -42,14 +41,14 @@ export default class EditCollection extends Component {
         return (    
             <div>
                 <h3>{title}</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form type="submit" onSubmit={this.handleSubmit}>
                     <input 
                         type="text"
                         name="title"
                         defaultValue={title}
                         onChange={this.handleChange}
                         />
-                        <button type="submit" onClick={this.handleSubmit}>
+                        <button>
                             Update
                         </button>
                 </form>

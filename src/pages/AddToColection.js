@@ -16,7 +16,6 @@ class Formula extends Component {
     componentDidMount () {
         collectionService.getCollections()
         .then(response => {
-          console.log(response);
           const { formulaName } = this.props;
           this.setState({
             collections: response.listOfCollections,
@@ -43,23 +42,19 @@ class Formula extends Component {
             const { value, name } = event.target;
             this.setState({ [name]: value})
         }
-
-        // get all collections of the user from api --> DONE
-            // store the collection list in state as usersCollections --> DONE
-            // change options by  the users collection  
     
 
     render() {
         const {collections, selectedCollectionId} = this.state;
         return (
             <>
-                <section>
+                <section className="form-addcollection">
                 {!collections.length 
-                    ? <button><Link to='/collections' >Create your collection</Link></button>
+                    ? <button><Link className="button-link" to='/collections' >Create collection</Link></button>
                     : 
                     <>
                     <select name="selectedCollectionId" onChange={this.handleSelectĆhange}>
-                        <option value="" disabled selected>Select your option</option>
+                        <option defaultValue="">Select your option</option>
                         {collections.map((collection) => {
                         return(
                             <>
@@ -72,7 +67,7 @@ class Formula extends Component {
                         ? <button onClick={this.handleFormSubmit}>Add To Collection</button>
                         : null
                     }
-                    <button><Link to='/collections' >Create your collection</Link></button>
+                    <button><Link className="button-link" to='/collections' >Create collection</Link></button>
                     </>
                 }
                 </section>
@@ -84,13 +79,3 @@ class Formula extends Component {
 
 export default withAuth(withRouter(Formula))
 
-
-// collections.map((collection) => {
-//     return (
-//         <>
-//             <select key={collection._id} name={collection.title} onChange={this.handleChange} defaultValue={this.state.category}>
-//                 <option>{collection.title}</option>
-//             </select>
-//         </>
-//     )
-// })

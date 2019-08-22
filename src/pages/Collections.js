@@ -61,7 +61,7 @@ class Collections extends Component {
                   this.handleDeleteClick(collection._id)
                 }}>X</button>
                 <h4>{collection.title}</h4>
-              <button><Link to={`/private/collection/edit/${collection._id}`}>Go</Link></button>
+              <button><Link className="button-link" to={`/private/collection/edit/${collection._id}`}>Go</Link></button>
               </article>
             )
           }):<p>No collections created yet</p>}

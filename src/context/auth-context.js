@@ -24,8 +24,8 @@ class AuthProvider extends Component {
         return authService.login(user)
         .then(() => {
             this.setState({
-                isLoggedIn: false,
-                user: {}
+                isLoggedIn: true,
+                user
             })
         })
     }

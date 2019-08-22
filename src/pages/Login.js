@@ -12,6 +12,8 @@ class Login extends Component {
     event.preventDefault();
     const { username, password } = this.state
 
+    console.log(this.props.user)
+
     this.props.login({ username, password })
     .then( (user) => {
       console.log(user)

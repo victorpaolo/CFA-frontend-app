@@ -24,11 +24,20 @@ import Corporate from './pages/Categories/Corporate'
 import Economics from './pages/Categories/Economics'
 import Equity from './pages/Categories/Equity'
 import Financial from './pages/Categories/Financial'
-import ReturnOnAssets from './components/Formulas/ReturnOnAssets'
 import Quants from './pages/Categories/Quants'
-import Kurtosis from './components/Formulas/Kurtosis'
 import Portfolio from './pages/Categories/Portfolio'
 import Fixed from './pages/Categories/Fixed'
+
+import Kurtosis from './components/Formulas/Kurtosis'
+import ReturnOnAssets from './components/Formulas/ReturnOnAssets'
+import CostPreferredStock from './components/Formulas/CostPreferredStock'
+import CrossPriceElasticity from './components/Formulas/CrossPriceElasticity'
+import FlatCleanQuotedPrice from './components/Formulas/FlatCleanQuotedPrice'
+import GdpIncome from './components/Formulas/GdpIncome'
+import PriceOfCommodityFutures from './components/Formulas/PriceOfCommodityFutures'
+import PurchasingStockMargin from './components/Formulas/PurchasingStockMargin'
+import SharpeRatio from './components/Formulas/SharpeRatio'
+
 
 import './App.css';
 import 'milligram';
@@ -67,6 +76,14 @@ class App extends Component {
 
               <Route path='/formula/kurtosis' exact component={Kurtosis}/>
               <Route path='/formula/roa' exact component={ReturnOnAssets}/>
+              <Route path='/formula/costpreferredstock' exact component={CostPreferredStock}/>
+              <Route path='/formula/crosspriceelasticity' exact component={CrossPriceElasticity}/>
+              <Route path='/formula/flatcleanquotedprice' exact component={FlatCleanQuotedPrice}/>
+              <Route path='/formula/gdpincome' exact component={GdpIncome}/>
+              <Route path='/formula/pricecommodityfutures' exact component={PriceOfCommodityFutures}/>
+              <Route path='/formula/purchasingstockmargin' exact component={PurchasingStockMargin}/>
+              <Route path='/formula/sharperatio' exact component={SharpeRatio}/>
+
               
               <Route component={NotFound}/>
             </Switch>

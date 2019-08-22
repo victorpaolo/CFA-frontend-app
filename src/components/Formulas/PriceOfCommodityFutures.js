@@ -3,12 +3,12 @@ import AddToColection from '../../pages/AddToColection';
 import MathJax from 'react-mathjax2'
 
 
-export default class CrossPriceElasticity extends Component {
+export default class PriceOfCommodityFutures extends Component {
     state = {
         netIncome:0,
         averageTotalAssets:0,
         returnOnAssets:0,
-        mode:"elasticity",
+        mode:"ROA",
         }
     
     handleKeyPress = (event) => {
@@ -101,9 +101,9 @@ export default class CrossPriceElasticity extends Component {
                 <label>
                      I want to calculate:
                      <select onChange={this.handleSelect} value={this.state.mode}>
-                      <option value="elasticity">Cross-Price Elasticity</option>
-                      <option value="changeQuantity">% Change in quantity demanded</option>
-                      <option value="changePrice">% Change in price of substitute or complement</option>
+                         <option value="ROA">ROA</option>
+                         <option value="Net Income">Net Income</option>
+                         <option value="Average Total Assets">Average Total Assets</option>
                      </select>
                  </label>
                 <div>{this.renderCalculation()}</div>

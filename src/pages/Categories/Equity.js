@@ -5,7 +5,8 @@ export default function Equity() {
     return (
         <div>
             <h2>Equity</h2>
-            <Link to='/formula/kurtosis' >Kurtosis</Link>
+            <Link to='/formula/purchasingstockmargin' >Purchasing Stock Margin</Link>
         </div>
     )
 }
+

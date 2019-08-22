@@ -58,6 +58,10 @@ list-style-type: none;
   color: #604DE8;
 }
 
+.button-link {
+  color: white;
+}
+
 
 
 
@@ -99,7 +103,16 @@ list-style-type: none;
 
 
 /* --- Category --- */
+.links-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
+}
 
+.category-link{
+  color: black;
+  font-size: 20px;
+}
 
 /* --- Collections --- */
 
@@ -113,6 +126,19 @@ list-style-type: none;
 
 
 /* --- Formula ---  */
+.formula {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.form-addcollection {
+  margin-bottom: 15px;
+  margin-top: 23px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
 
 
 /* --- Navbar --- */

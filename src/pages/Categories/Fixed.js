@@ -5,7 +5,7 @@ export default function Fixed() {
     return (
         <div>
             <h2>Fixed</h2>
-            <Link to='/formula/kurtosis' >Kurtosis</Link>
+            <Link to='/formula/flatcleanquotedprice' >Flat Clean Quoted Price</Link>
         </div>
     )
 }

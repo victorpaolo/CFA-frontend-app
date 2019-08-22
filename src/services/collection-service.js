@@ -29,6 +29,11 @@ addFormulaToCollection(formulaName, collectionId) {
   .then(({ data }) => data );
 }
 
+deleteFormula(formulaName) {
+  return this.collection.delete(`/private/formula/${formulaName}/delete`)
+  .then(({ data }) => data );
+}
+
 editCollection(collection, collectionId) {
   return this.collection.put(`/private/${collectionId}/update`, collection)
   .then(({ data }) => data );
