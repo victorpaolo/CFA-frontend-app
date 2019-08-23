@@ -53,7 +53,7 @@ export default class EditCollection extends Component {
                         </button>
                 </form>
                 { formulas.map((formulaName) => (
-                        <Link to={`/formula/${formulaName}`}><button>{formulaName}</button></Link>
+                    <div className="list-fomulas"><Link to={`/formula/${formulaName}`}><button>{formulaName}</button></Link></div>
                     )) }
             </div>
         )

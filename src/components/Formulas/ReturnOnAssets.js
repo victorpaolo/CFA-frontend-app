@@ -28,26 +28,20 @@ export default class ReturnOnAssets extends Component {
     }
 
     convert = (name) => {
-
-        console.log("%%% IN CONVERT")
         const {returnOnAssets, netIncome, averageTotalAssets} = this.state;
         
         if (name === "netIncome") {
-            console.log("%%%%%% IN FIRST")
             this.setState({
                 returnOnAssets: this.calculationRoa(netIncome, averageTotalAssets),
                 averageTotalAssets: this.calculationTotalAssets(returnOnAssets, averageTotalAssets)
             }
             )   
         } else if (name === "averageTotalAssets" ){
-            console.log("%%%%%% IN SECOND")
             this.setState({
                 netIncome: this.calculationNetIncome(returnOnAssets, averageTotalAssets),
                 returnOnAssets: this.calculationRoa(netIncome, averageTotalAssets)
             })   
         } else if (name ===  "returnOnAssets" ) {
-            console.log("%%%%%% IN THIRD")
-
             this.setState({
                 netIncome: this.calculationNetIncome(returnOnAssets, averageTotalAssets),
                 averageTotalAssets: this.calculationTotalAssets(netIncome, returnOnAssets)
@@ -80,20 +74,22 @@ export default class ReturnOnAssets extends Component {
     renderCalculation = () => {
 
         const { netIncome, returnOnAssets, averageTotalAssets, mode} = this.state; 
-        if(mode === 'ROA') {
-            console.log("IN ROA INPUT",this.state.returnOnAssets)
+        // const example = `${returnOnAssets} = ${netIncome}/ ${averageTotalAssets}`
 
+        if(mode === 'ROA') {
             return (<>
+                {/* <MathJax.Context input='example'>
+                    <div className="formula">
+                        <MathJax.Node>{example}</MathJax.Node>
+                    </div>
+                </MathJax.Context> */}
+
                 <p>Net Income<input key={"netIncome"} name="netIncome" type="number" defaultValue={netIncome} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
                 <p>Average Total Assets<input key={"averageTotalAssets"} name="averageTotalAssets" type="number" defaultValue={averageTotalAssets} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
                 <p>ROA<input key={"returnOnAssets"} name="returnOnAssets" type="number" value={returnOnAssets}/></p>
                 </>
             );
         } else if (mode === 'Net Income') {
-            console.log("net income ready")
-            console.log("IN Net Income INPUT",this.state.returnOnAssets)
-            console.log("IN INPUT - VALUE TYPE IS",typeof this.state.returnOnAssets)
-
             return(<>
                 <p>ROA<input key={"returnOnAssets"} name="returnOnAssets" type="number" defaultValue={returnOnAssets || 0} onChange={(e)=>this.handleKeyPress(e)}/></p>
                 <p>Average Total Assets<input key={"averageTotalAssets"} name="averageTotalAssets" type="number" defaultValue={averageTotalAssets} onChange={(e)=>{this.handleKeyPress(e)}}/></p>
@@ -114,6 +110,7 @@ export default class ReturnOnAssets extends Component {
     render() {
         // const { netIncome, returnOnAssets, averageTotalAssets, mode} = this.state; 
         const ascii = 'ROA = "Net Income"/ "Average Total Assets"'
+
         // console.log(this.state);
         
         return (
@@ -124,6 +121,7 @@ export default class ReturnOnAssets extends Component {
                         <MathJax.Node>{ascii}</MathJax.Node>
                     </div>
                 </MathJax.Context>
+
                 <AddToColection formulaName="roa"/>
                 <label>
                      I want to calculate:

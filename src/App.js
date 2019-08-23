@@ -51,7 +51,7 @@ class App extends Component {
         <AuthProvider>
           <div className="container">
             <Navbar/>
-            <h1>CharterHold</h1>
+            <h1 className="main-title">CharterHold</h1>
             <Switch>
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />

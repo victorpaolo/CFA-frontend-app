@@ -62,7 +62,9 @@ list-style-type: none;
   color: white;
 }
 
-
+.main-title {
+  margin-top: 15px;
+}
 
 
 /* --- Navbar --- */
@@ -123,7 +125,11 @@ list-style-type: none;
 }
 
 /* --- Collection --- */
-
+.list-fomulas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 /* --- Formula ---  */
 .formula {
